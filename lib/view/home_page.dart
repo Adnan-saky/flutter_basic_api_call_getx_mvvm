@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../viewmodel/post_list_viewmodel.dart';
+import '../widget/shimmer_list.dart';
 
 class HomePage extends StatelessWidget {
   final PostListViewModel postListController = Get.put(PostListViewModel());
@@ -16,11 +17,11 @@ class HomePage extends StatelessWidget {
         child: Obx(
           () => Visibility(
             visible: postListController.isLoaded.value,
-            replacement: const Center(
-              child: CircularProgressIndicator(),
+            replacement:  Center(
+              child: ShimmerList()//CircularProgressIndicator(),
             ),
             child: ListView.builder(
-              reverse: true,
+              reverse: false,
               cacheExtent: 25,
               physics: const ScrollPhysics(),
               itemCount: postListController.posts!.length,
